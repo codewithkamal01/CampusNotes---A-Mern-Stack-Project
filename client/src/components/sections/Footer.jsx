@@ -10,12 +10,12 @@ import {
 import { Link } from "react-router-dom";
 
 function Footer() {
+  const isLoggedIn = localStorage.getItem("token");
+
   return (
     <footer className="border-t border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-950">
-      
       {/* Top Section */}
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 py-16 md:grid-cols-2 lg:grid-cols-4">
-        
         {/* Brand */}
         <div>
           <Link
@@ -26,14 +26,13 @@ function Footer() {
           </Link>
 
           <p className="mb-6 max-w-sm text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-            A modern academic platform helping students access notes,
-            previous year questions, quizzes, and collaborative study
-            resources in one place.
+            A modern academic platform helping students access notes, previous
+            year questions, quizzes, and collaborative study resources in one
+            place.
           </p>
 
           {/* Socials */}
           <div className="flex items-center gap-3">
-            
             <a
               href="#"
               className="
@@ -89,7 +88,6 @@ function Footer() {
           </h3>
 
           <div className="flex flex-col gap-4 text-sm">
-            
             <Link
               to="/notes"
               className="flex items-center gap-3 text-slate-600 transition hover:text-blue-600 dark:text-slate-400"
@@ -107,7 +105,7 @@ function Footer() {
             </Link>
 
             <Link
-              to="/register"
+              to={isLoggedIn ? "/upload" : "/register"}
               className="flex items-center gap-3 text-slate-600 transition hover:text-blue-600 dark:text-slate-400"
             >
               <Upload size={16} />
@@ -115,7 +113,7 @@ function Footer() {
             </Link>
 
             <Link
-              to="/quiz"
+              to="/"
               className="flex items-center gap-3 text-slate-600 transition hover:text-blue-600 dark:text-slate-400"
             >
               <GraduationCap size={16} />
@@ -131,7 +129,6 @@ function Footer() {
           </h3>
 
           <div className="flex flex-col gap-4 text-sm">
-            
             <Link
               to="/about"
               className="text-slate-600 transition hover:text-blue-600 dark:text-slate-400"
@@ -169,7 +166,6 @@ function Footer() {
           </h3>
 
           <div className="flex flex-col gap-4 text-sm">
-            
             <Link
               to="/privacy"
               className="text-slate-600 transition hover:text-blue-600 dark:text-slate-400"
@@ -203,7 +199,6 @@ function Footer() {
 
       {/* Bottom Bar */}
       <div className="border-t border-slate-200 dark:border-slate-800">
-        
         <div
           className="
             mx-auto
@@ -221,30 +216,18 @@ function Footer() {
             md:flex-row
           "
         >
-          <p>
-            © 2026 CampusNotes. All rights reserved.
-          </p>
+          <p>© 2026 CampusNotes. All rights reserved.</p>
 
           <div className="flex items-center gap-6">
-            
-            <Link
-              to="/sitemap"
-              className="transition hover:text-blue-600"
-            >
+            <Link to="/sitemap" className="transition hover:text-blue-600">
               Sitemap
             </Link>
 
-            <Link
-              to="/support"
-              className="transition hover:text-blue-600"
-            >
+            <Link to="/support" className="transition hover:text-blue-600">
               Support
             </Link>
 
-            <Link
-              to="/status"
-              className="transition hover:text-blue-600"
-            >
+            <Link to="/status" className="transition hover:text-blue-600">
               System Status
             </Link>
           </div>

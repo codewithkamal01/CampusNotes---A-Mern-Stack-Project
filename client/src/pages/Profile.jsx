@@ -46,7 +46,44 @@ function Profile() {
   }, []);
 
   if (loading) {
-    return <div className="p-10">Loading profile...</div>;
+    return (
+      <div className="flex min-h-[70vh] flex-col items-center justify-center px-4">
+        {/* Profile Skeleton */}
+        <div className="w-full max-w-4xl animate-pulse rounded-3xl border border-slate-200 bg-white p-8 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+          {/* Top Section */}
+          <div className="flex flex-col items-center gap-5 sm:flex-row sm:items-center">
+            {/* Avatar */}
+            <div className="h-24 w-24 rounded-full bg-slate-200 dark:bg-slate-700"></div>
+
+            {/* User Info */}
+            <div className="flex-1 space-y-3">
+              <div className="h-6 w-48 rounded bg-slate-200 dark:bg-slate-700"></div>
+              <div className="h-4 w-72 rounded bg-slate-200 dark:bg-slate-700"></div>
+              <div className="h-4 w-40 rounded bg-slate-200 dark:bg-slate-700"></div>
+            </div>
+          </div>
+
+          {/* Stats / Content */}
+          <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-3">
+            {[...Array(3)].map((_, index) => (
+              <div
+                key={index}
+                className="rounded-2xl border border-slate-100 p-5 dark:border-slate-800"
+              >
+                <div className="h-5 w-24 rounded bg-slate-200 dark:bg-slate-700"></div>
+                <div className="mt-4 h-8 w-16 rounded bg-slate-200 dark:bg-slate-700"></div>
+                <div className="mt-3 h-4 w-full rounded bg-slate-200 dark:bg-slate-700"></div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Loading Text */}
+        <p className="mt-6 text-sm text-slate-500 dark:text-slate-400">
+          Loading your profile...
+        </p>
+      </div>
+    );
   }
 
   return (

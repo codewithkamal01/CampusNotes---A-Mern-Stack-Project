@@ -7,7 +7,7 @@ const storage = new CloudinaryStorage({
 
   params: async (req, file) => ({
     folder: "notes-platform",
-    resource_type: "auto",
+    resource_type: "raw",
     public_id: Date.now() + "-" + file.originalname,
     allowed_formats: ["pdf", "doc", "docx"],
   }),

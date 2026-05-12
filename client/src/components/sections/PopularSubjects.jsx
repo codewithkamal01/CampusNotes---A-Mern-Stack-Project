@@ -6,9 +6,8 @@ function PopularSubjects() {
     "Mathematics",
     "Engineering",
     "Literature",
-    "Economics",
-    "Psychology",
-    "Law",
+    "Mern Stack",
+    "Data Science",
     "Business",
   ];
 
@@ -32,7 +31,7 @@ function PopularSubjects() {
           {subjects.map((subject, index) => (
             <Link
               key={index}
-              to={`/subjects/${subject.toLowerCase().replace(/\s+/g, "-")}`}
+              to={"/"}
               className="
                 group
                 rounded-full

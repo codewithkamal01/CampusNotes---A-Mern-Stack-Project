@@ -1,8 +1,9 @@
 import { FileText, GraduationCap, Upload, BookOpen } from "lucide-react";
 import FeatureCard from "./FeaturedCard";
 
-
 function Cards() {
+  const isLoggedIn = localStorage.getItem("token");
+
   const cards = [
     {
       title: "Academic Notes",
@@ -31,7 +32,7 @@ function Cards() {
       description: "Interactive flashcards and quizzes for lab exams.",
       icon: BookOpen,
       buttonText: "Start Quiz",
-      buttonLink: "/quiz",
+      buttonLink: "/",
       variant: "secondary",
       colSpan: "md:col-span-4",
     },
@@ -41,7 +42,8 @@ function Cards() {
       description: "Upload high-quality notes and help your peers.",
       icon: Upload,
       buttonText: "Upload Notes",
-      buttonLink: "/register",
+      // Dynamic redirect
+      buttonLink: isLoggedIn ? "/upload" : "/register",
       variant: "default",
       colSpan: "md:col-span-8",
       image:

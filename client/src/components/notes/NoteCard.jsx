@@ -105,10 +105,9 @@ function NoteCard({
 
         {/* Actions */}
         <div className="mt-auto flex items-center gap-3 pt-4">
-          <a
-            href={fileUrl}
-            target="_blank"
-            rel="noreferrer"
+          {/* Open Note */}
+          <button
+            onClick={() => window.open(fileUrl, "_blank")}
             className="
     flex-1
     rounded-2xl
@@ -123,12 +122,12 @@ function NoteCard({
   "
           >
             Open Note
-          </a>
+          </button>
 
           <a
             href={fileUrl}
             download={title}
-          
+            target="_blank"
             className="
     flex
     h-12
