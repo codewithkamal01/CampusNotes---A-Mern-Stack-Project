@@ -18,7 +18,10 @@ export const uploadNote = async (req, res) => {
       semester,
       year,
       uploadType,
-      fileUrl: `/uploads/${req.file.filename}`,
+      // cloudinary file url
+      fileUrl: req.file.path,
+      // optional extra data
+      public_id: req.file.filename,
       uploadedBy: req.user.id,
     });
 
