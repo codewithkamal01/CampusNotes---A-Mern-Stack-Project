@@ -1,6 +1,6 @@
 import UploadInput from "./UploadInput";
 import UploadSelect from "./UploadSelect";
-import UploadTextarea from "./UploadTextarea";
+import UploadTextArea from "./UploadTextArea";
 import FileUploadBox from "./FileUploadBox";
 import UploadActions from "./UploadActions";
 
