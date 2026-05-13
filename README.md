@@ -1,3 +1,5 @@
+# UNDER-CONSTRUCTION
+
 # 📚 College Notes Platform
 
 A modern full-stack notes sharing platform built for students to upload, manage, and access study materials easily.
