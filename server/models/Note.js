@@ -9,7 +9,6 @@ const noteSchema = new mongoose.Schema(
 
     course: {
       type: String,
-      required: true,
     },
 
     subject: {
@@ -19,12 +18,12 @@ const noteSchema = new mongoose.Schema(
 
     semester: {
       type: String,
-      required: true,
     },
+
     year: {
       type: Number,
-      required: true,
     },
+
     fileUrl: {
       type: String,
       required: true,
@@ -34,10 +33,15 @@ const noteSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
+
     uploadType: {
       type: String,
-      enum: ["Class Notes", "PYQ", "All"],
+      enum: ["Class Notes", "PYQ", "Others"],
       required: true,
+    },
+
+    public_id: {
+      type: String,
     },
   },
   {
@@ -45,4 +49,4 @@ const noteSchema = new mongoose.Schema(
   },
 );
 
-export default mongoose.model("Note", noteSchema);
+export default mongoose.models.Note || mongoose.model("Note", noteSchema);

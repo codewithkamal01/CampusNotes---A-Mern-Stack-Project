@@ -18,10 +18,10 @@ function RecentUpload() {
           id: note._id,
           image: Logo,
           title: note.title,
-          category: note.subject,
-          semester: note.semester,
+          subject: note.subject,
+          semester: `Sem ${note.semester}`,
           author: note.uploadedBy?.name || "Unknown",
-          fileUrl: `http://localhost:5000${note.fileUrl}`,
+          fileUrl: note.fileUrl,
           badge: "Latest",
         }));
 

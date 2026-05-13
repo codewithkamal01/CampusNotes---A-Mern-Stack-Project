@@ -5,32 +5,59 @@ export const uploadNote = async (req, res) => {
   try {
     const { title, course, year, uploadType, subject, semester } = req.body;
 
+    // File validation
     if (!req.file) {
       return res.status(400).json({
+        success: false,
         message: "File not uploaded",
       });
     }
 
-    const note = await Note.create({
+    // Required fields validation
+    if (!title || !subject || !uploadType) {
+      return res.status(400).json({
+        success: false,
+        message: "Please fill all required fields",
+      });
+    }
+
+    // PYQ validation
+    if (uploadType === "PYQ") {
+      if (!semester || !year || !course) {
+        return res.status(400).json({
+          success: false,
+          message: "Course, Semester and Year are required for PYQ",
+        });
+      }
+    }
+
+    const noteData = {
       title,
       subject,
-      course,
-      semester,
-      year,
       uploadType,
-      // cloudinary file url
       fileUrl: req.file.path,
-      // optional extra data
       public_id: req.file.filename,
       uploadedBy: req.user.id,
-    });
+    };
+
+    // Add only for PYQ
+    if (uploadType === "PYQ") {
+      noteData.course = course;
+      noteData.semester = semester;
+      noteData.year = year;
+    }
+
+    const note = await Note.create(noteData);
 
     res.status(201).json({
+      success: true,
       message: "Note uploaded successfully",
       note,
     });
+    
   } catch (error) {
     res.status(500).json({
+      success: false,
       message: error.message,
     });
   }

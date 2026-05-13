@@ -41,8 +41,7 @@ function Notes() {
   const formattedNotes = filteredNotes.map((note) => ({
     _id: note._id,
     title: note.title,
-    category: note.subject,
-    semester: `Semester ${note.semester}`,
+    subject: note.subject,
     author: note.uploadedBy?.name || "Unknown",
     badge: "Verified",
     image: Logo,

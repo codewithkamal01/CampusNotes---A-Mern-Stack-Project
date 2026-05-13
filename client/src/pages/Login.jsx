@@ -34,7 +34,7 @@ export default function Login() {
       localStorage.setItem("user", JSON.stringify(res.data.user));
       toast.success(res.data.message);
 
-      navigate("/profile");
+      navigate("/");
     } catch (error) {
       console.log(error);
 

@@ -1,14 +1,6 @@
 import { CalendarDays, User, Download } from "lucide-react";
 
-function NoteCard({
-  image,
-  title,
-  category,
-  semester,
-  author,
-  badge,
-  fileUrl,
-}) {
+function NoteCard({ image, title, subject, author, badge, fileUrl }) {
   return (
     <div
       className="
@@ -82,21 +74,16 @@ function NoteCard({
               dark:text-white
             "
           >
-            {title}
+            {subject}
           </h3>
 
           <p className="mt-1 line-clamp-1 text-sm text-slate-500 dark:text-slate-400">
-            {category}
+            {title}
           </p>
         </div>
 
         {/* Meta */}
         <div className="mt-4 flex flex-wrap gap-4 text-xs text-slate-500 dark:text-slate-400">
-          <div className="flex items-center gap-1">
-            <CalendarDays size={14} />
-            {semester}
-          </div>
-
           <div className="flex items-center gap-1 font-bold">
             <User size={14} />
             {author}
@@ -106,8 +93,10 @@ function NoteCard({
         {/* Actions */}
         <div className="mt-auto flex items-center gap-3 pt-4">
           {/* Open Note */}
-          <button
-            onClick={() => window.open(fileUrl, "_blank")}
+          <a
+            href={fileUrl}
+            download={title}
+            target="_blank"
             className="
     flex-1
     rounded-2xl
@@ -122,7 +111,7 @@ function NoteCard({
   "
           >
             Open Note
-          </button>
+          </a>
 
           <a
             href={fileUrl}
