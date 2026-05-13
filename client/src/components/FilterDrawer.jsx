@@ -1,14 +1,18 @@
 import { useState } from "react";
-import { SlidersHorizontal, X, ChevronDown, Check } from "lucide-react";
+import { SlidersHorizontal, Check } from "lucide-react";
 
-function FilterDrawer() {
+function FilterDrawer({
+  selectedSemester,
+  setSelectedSemester,
+  selectedYear,
+  setSelectedYear,
+  searchSubject,
+  setSearchSubject,
+}) {
   const [open, setOpen] = useState(false);
 
-  const [selectedSemester, setSelectedSemester] = useState("Sem 1");
-
-  const [selectedYear, setSelectedYear] = useState("2025");
-
   const semesters = [
+    "All",
     "Sem 1",
     "Sem 2",
     "Sem 3",
@@ -19,365 +23,203 @@ function FilterDrawer() {
     "Sem 8",
   ];
 
-  const years = ["2026", "2025", "2024", "2023", "2022"];
-
-  const subjects = [
-    "Data Structures",
-    "Algorithms",
-    "Operating System",
-    "DBMS",
-    "Computer Networks",
-  ];
+  const years = ["All", "2025", "2024", "2023", "2022", "2021", "2020"];
 
   return (
     <>
-      {/* Floating Filter Button */}
+      {/* Floating Minimal Button */}
       <button
-        onClick={() => setOpen(true)}
+        onClick={() => setOpen(!open)}
         className="
-          fixed
-          bottom-5
-          right-5
-          z-40
-          flex
-          items-center
-          gap-2
-          rounded-2xl
-          bg-blue-600
-          px-5
-          py-3
-          text-sm
-          font-semibold
-          text-white
-          shadow-2xl
-          transition-all
-          duration-300
-          hover:-translate-y-1
-          hover:bg-blue-700
-        "
+    fixed bottom-5 right-5 z-50
+    flex items-center gap-2
+    rounded-full
+    border border-blue-200/50
+    bg-gradient-to-r
+    from-blue-600
+    to-indigo-600
+    px-5 py-3
+    text-sm font-semibold
+    text-white
+    shadow-2xl shadow-blue-500/25
+    backdrop-blur
+    transition-all duration-300
+    hover:scale-105
+    hover:shadow-blue-500/40
+    active:scale-95
+    dark:border-blue-900/40
+  "
       >
-        <SlidersHorizontal size={18} />
+        <SlidersHorizontal size={17} />
         Filters
       </button>
 
-      {/* Overlay */}
+      {/* Floating Card */}
       <div
-        onClick={() => setOpen(false)}
         className={`
-          fixed
-          inset-0
-          z-40
-          bg-black/40
-          backdrop-blur-sm
-          transition-all
-          duration-300
-          ${open ? "visible opacity-100" : "invisible opacity-0"}
-        `}
-      />
-
-      {/* Drawer */}
-      <aside
-        className={`
-          fixed
-          right-0
-          top-0
-          z-50
-          flex
-          h-screen
-          w-full
-          max-w-[380px]
-          flex-col
-          overflow-hidden
-          border-l
-          border-slate-200
-          bg-white
-          shadow-2xl
-          transition-transform
-          duration-300
+          fixed bottom-24 right-5 z-50
+          w-[320px]
+          rounded-3xl
+          border border-slate-200
+          bg-white/95
+          p-4 shadow-2xl
+          backdrop-blur-xl
+          transition-all duration-300
           dark:border-slate-800
-          dark:bg-slate-950
-          ${open ? "translate-x-0" : "translate-x-full"}
+          dark:bg-slate-950/95
+          ${
+            open
+              ? "translate-y-0 opacity-100"
+              : "pointer-events-none translate-y-4 opacity-0"
+          }
         `}
       >
+
         {/* Header */}
-        <div
-          className="
-            flex
-            items-center
-            justify-between
-            border-b
-            border-slate-200
-            px-6
-            py-5
-            dark:border-slate-800
-          "
-        >
-          <div>
-            <h2 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
-              Filters
-            </h2>
-
-            <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
-              Refine your resources
-            </p>
-          </div>
-
-          <button
-            onClick={() => setOpen(false)}
+        <div className="mb-5">
+          <h2
             className="
-              rounded-xl
-              p-2
-              text-slate-500
-              transition
-              hover:bg-slate-100
-              dark:hover:bg-slate-900
+              text-lg font-bold
+              text-slate-900
+              dark:text-white
             "
           >
-            <X size={20} />
-          </button>
+            Filter PYQs
+          </h2>
+
+          <p
+            className="
+              mt-1 text-sm
+              text-slate-500
+              dark:text-slate-400
+            "
+          >
+            Find papers faster
+          </p>
+        </div>
+        {/* Search */}
+        <div className="mb-4">
+          <p
+            className="
+      mb-3 text-xs font-bold
+      uppercase tracking-wider
+      text-slate-400
+    "
+          >
+            Search Subject
+          </p>
+
+          <input
+            type="text"
+            placeholder="Search PYQ subject..."
+            value={searchSubject}
+            onChange={(e) => setSearchSubject(e.target.value)}
+            className="
+      w-full rounded-2xl
+      border border-blue-100
+      bg-blue-50/60
+      px-4 py-3
+      text-sm text-slate-700
+      outline-none
+      transition-all duration-200
+      placeholder:text-slate-400
+      focus:border-blue-500
+      focus:bg-white
+      focus:ring-4
+      focus:ring-blue-100
+      dark:border-slate-800
+      dark:bg-slate-900
+      dark:text-white
+      dark:focus:ring-blue-950/40
+    "
+          />
+        </div>
+        {/* Semester */}
+        <div>
+          <p
+            className="
+              mb-3 text-xs font-bold
+              uppercase tracking-wider
+              text-slate-400
+            "
+          >
+            Semester
+          </p>
+
+          <div className="grid grid-cols-3 gap-2">
+            {semesters.map((semester) => (
+              <button
+                key={semester}
+                onClick={() => setSelectedSemester(semester)}
+                className={`
+                  rounded-2xl
+                  px-3 py-2
+                  text-sm font-medium
+                  transition-all duration-200
+                  ${
+                    selectedSemester === semester
+                      ? "bg-blue-600 text-white shadow-md"
+                      : "bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
+                  }
+                `}
+              >
+                {semester}
+              </button>
+            ))}
+          </div>
         </div>
 
-        {/* Body */}
-        <div className="flex-1 overflow-y-auto px-6 py-6">
-          <div className="space-y-8">
-            {/* Course */}
-            <div>
-              <label
-                className="
-                  mb-3
-                  block
-                  text-xs
-                  font-bold
-                  uppercase
-                  tracking-[0.15em]
-                  text-slate-500
-                "
+        {/* Year */}
+        <div className="mt-4">
+          <p
+            className="
+              mb-3 text-xs font-bold
+              uppercase tracking-wider
+              text-slate-400
+            "
+          >
+            Year
+          </p>
+
+          <div className="flex flex-wrap gap-2">
+            {years.map((year) => (
+              <button
+                key={year}
+                onClick={() => setSelectedYear(year)}
+                className={`
+                  flex items-center gap-1.5
+                  rounded-full
+                  px-4 py-2
+                  text-sm font-medium
+                  transition-all duration-200
+                  ${
+                    selectedYear === year
+                      ? "bg-slate-900 text-white dark:bg-white dark:text-slate-900"
+                      : "bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
+                  }
+                `}
               >
-                Course
-              </label>
+                {selectedYear === year && <Check size={14} />}
 
-              <div className="relative">
-                <select
-                  className="
-                    w-full
-                    appearance-none
-                    rounded-2xl
-                    border
-                    border-slate-200
-                    bg-slate-50
-                    px-4
-                    py-3.5
-                    text-sm
-                    font-medium
-                    outline-none
-                    transition-all
-                    focus:border-blue-500
-                    focus:ring-4
-                    focus:ring-blue-100
-                    dark:border-slate-800
-                    dark:bg-slate-900
-                    dark:text-white
-                  "
-                >
-                  <option>Computer Science</option>
-                  <option>Electronics</option>
-                  <option>Mechanical</option>
-                  <option>Civil Engineering</option>
-                </select>
-
-                <ChevronDown
-                  size={18}
-                  className="
-                    pointer-events-none
-                    absolute
-                    right-4
-                    top-1/2
-                    -translate-y-1/2
-                    text-slate-400
-                  "
-                />
-              </div>
-            </div>
-
-            {/* Semester */}
-            <div>
-              <label
-                className="
-                  mb-3
-                  block
-                  text-xs
-                  font-bold
-                  uppercase
-                  tracking-[0.15em]
-                  text-slate-500
-                "
-              >
-                Semester
-              </label>
-
-              <div className="grid grid-cols-2 gap-3">
-                {semesters.map((semester) => (
-                  <button
-                    key={semester}
-                    onClick={() => setSelectedSemester(semester)}
-                    className={`
-                      rounded-2xl
-                      px-4
-                      py-3.5
-                      text-sm
-                      font-semibold
-                      transition-all
-                      duration-300
-                      ${
-                        selectedSemester === semester
-                          ? "bg-blue-600 text-white shadow-lg shadow-blue-500/20"
-                          : "bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
-                      }
-                    `}
-                  >
-                    {semester}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Year */}
-            <div>
-              <label
-                className="
-                  mb-3
-                  block
-                  text-xs
-                  font-bold
-                  uppercase
-                  tracking-[0.15em]
-                  text-slate-500
-                "
-              >
-                Year
-              </label>
-
-              <div className="flex flex-wrap gap-3">
-                {years.map((year) => (
-                  <button
-                    key={year}
-                    onClick={() => setSelectedYear(year)}
-                    className={`
-                      rounded-full
-                      px-4
-                      py-2
-                      text-sm
-                      font-semibold
-                      transition-all
-                      duration-300
-                      ${
-                        selectedYear === year
-                          ? "bg-blue-600 text-white"
-                          : "bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
-                      }
-                    `}
-                  >
-                    {year}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Subjects */}
-            <div>
-              <label
-                className="
-                  mb-3
-                  block
-                  text-xs
-                  font-bold
-                  uppercase
-                  tracking-[0.15em]
-                  text-slate-500
-                "
-              >
-                Subjects
-              </label>
-
-              <div className="space-y-2">
-                {subjects.map((subject) => (
-                  <label
-                    key={subject}
-                    className="
-                      group
-                      flex
-                      cursor-pointer
-                      items-center
-                      justify-between
-                      rounded-2xl
-                      border
-                      border-transparent
-                      px-4
-                      py-3
-                      transition-all
-                      hover:border-slate-200
-                      hover:bg-slate-50
-                      dark:hover:border-slate-800
-                      dark:hover:bg-slate-900
-                    "
-                  >
-                    <div className="flex items-center gap-3">
-                      <input
-                        type="checkbox"
-                        className="
-                          h-4
-                          w-4
-                          rounded-md
-                          border-slate-300
-                          text-blue-600
-                          focus:ring-blue-500
-                        "
-                      />
-
-                      <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
-                        {subject}
-                      </span>
-                    </div>
-
-                    <Check
-                      size={16}
-                      className="
-                        opacity-0
-                        transition-opacity
-                        group-hover:opacity-40
-                      "
-                    />
-                  </label>
-                ))}
-              </div>
-            </div>
+                {year}
+              </button>
+            ))}
           </div>
         </div>
 
         {/* Footer */}
-        <div
-          className="
-            flex
-            gap-3
-            border-t
-            border-slate-200
-            bg-white
-            p-5
-            dark:border-slate-800
-            dark:bg-slate-950
-          "
-        >
+        <div className="mt-6 flex gap-3">
           <button
+            onClick={() => {
+              setSelectedSemester("All");
+              setSelectedYear("All");
+            }}
             className="
-              flex-1
-              rounded-2xl
+              flex-1 rounded-2xl
               bg-slate-100
-              py-3.5
-              text-sm
-              font-semibold
-              text-slate-700
-              transition-all
-              hover:bg-slate-200
+              py-2.5 text-sm
+              font-semibold text-slate-700
+              transition hover:bg-slate-200
               dark:bg-slate-900
               dark:text-slate-300
               dark:hover:bg-slate-800
@@ -389,21 +231,17 @@ function FilterDrawer() {
           <button
             onClick={() => setOpen(false)}
             className="
-              flex-1
-              rounded-2xl
+              flex-1 rounded-2xl
               bg-blue-600
-              py-3.5
-              text-sm
-              font-semibold
-              text-white
-              transition-all
-              hover:bg-blue-700
+              py-2.5 text-sm
+              font-semibold text-white
+              transition hover:bg-blue-700
             "
           >
-            Apply Filters
+            Done
           </button>
         </div>
-      </aside>
+      </div>
     </>
   );
 }

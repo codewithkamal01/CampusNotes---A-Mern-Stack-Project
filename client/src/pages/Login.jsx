@@ -91,7 +91,7 @@ export default function Login() {
                 </p>
 
                 <span className="text-xs uppercase tracking-widest text-slate-500">
-                  Alex Rivera, CS Major
+                  Kamal Manna, Self-taught Developer
                 </span>
               </div>
             </div>

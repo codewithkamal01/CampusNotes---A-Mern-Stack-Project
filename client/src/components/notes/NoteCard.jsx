@@ -74,11 +74,11 @@ function NoteCard({ image, title, subject, author, badge, fileUrl }) {
               dark:text-white
             "
           >
-            {subject}
+            {title}
           </h3>
 
           <p className="mt-1 line-clamp-1 text-sm text-slate-500 dark:text-slate-400">
-            {title}
+            {subject}
           </p>
         </div>
 

@@ -4,6 +4,7 @@ import {
   getAllNotes,
   getLatestNotes,
   getMyNotes,
+  deleteNote,
 } from "../controllers/noteController.js";
 
 import authMiddleware from "../middleware/authMiddleware.js";
@@ -16,6 +17,7 @@ router.post("/upload", authMiddleware, upload.single("file"), uploadNote);
 
 // Get User Notes
 router.get("/my-notes", authMiddleware, getMyNotes);
+router.delete("/:id", authMiddleware, deleteNote);
 
 // Get Latest Notes
 router.get("/latest", getLatestNotes);

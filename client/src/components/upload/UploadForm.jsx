@@ -23,7 +23,7 @@ function UploadForm({
   <div className="grid grid-cols-3 gap-3">
     {[
       {
-        label: "📘 Notes",
+        label: "📘Class Notes",
         value: "Class Notes",
       },
 

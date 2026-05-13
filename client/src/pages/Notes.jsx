@@ -7,6 +7,7 @@ import NotesSearchBar from "../components/notes/NotesSearchBar";
 import NotesGrid from "../components/notes/NotesGrid";
 import Pagination from "../components/notes/Pagination";
 import Logo from "../assets/logo.jpg";
+import FloatingUploadButton from "../components/notes/FloatingUploadButton";
 
 function Notes() {
   const [notes, setNotes] = useState([]);
@@ -56,9 +57,7 @@ function Notes() {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
-      {/* Filter Drawer */}
-      <FilterDrawer />
-
+      <FloatingUploadButton />
       {/* Main Content */}
       <main className="px-4 py-6 sm:px-6 lg:px-10">
         <div className="mx-auto max-w-7xl">
@@ -76,7 +75,7 @@ function Notes() {
             "
           >
             {/* Header */}
-            <NotesHeader />
+            <NotesHeader notes={notes} />
 
             {/* Search */}
             <NotesSearchBar

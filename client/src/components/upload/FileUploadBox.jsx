@@ -65,7 +65,7 @@ function FileUploadBox({ file, onChange }) {
         </h3>
 
         <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
-          PDF or DOCX up to 50MB
+          PDF or DOCX up to 10MB
         </p>
 
         {file && (

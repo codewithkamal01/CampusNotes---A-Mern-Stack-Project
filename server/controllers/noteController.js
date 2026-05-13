@@ -54,7 +54,6 @@ export const uploadNote = async (req, res) => {
       message: "Note uploaded successfully",
       note,
     });
-    
   } catch (error) {
     res.status(500).json({
       success: false,
@@ -137,7 +136,7 @@ export const getLatestNotes = async (req, res) => {
 export const getMyNotes = async (req, res) => {
   try {
     const notes = await Note.find({
-      uploadedBy: req.user._id,
+      uploadedBy: req.user.id,
     }).sort({
       createdAt: -1,
     });
@@ -145,6 +144,47 @@ export const getMyNotes = async (req, res) => {
     res.status(200).json(notes);
   } catch (error) {
     res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+
+import cloudinary from "../config/cloudinary.js";
+
+export const deleteNote = async (req, res) => {
+  try {
+    const note = await Note.findById(req.params.id);
+
+    //check note exists
+    if (!note) {
+      return res.status(404).json({
+        success: false,
+        message: "Note not found",
+      });
+    }
+
+    //check ownership
+    if (note.uploadedBy.toString() !== req.user.id) {
+      return res.status(403).json({
+        success: false,
+        message: "Unauthorized access",
+      });
+    }
+
+    //delete file from cloudinary
+    await cloudinary.uploader.destroy(note.public_id, {
+      resource_type: "raw",
+    });
+    //delete file from database
+    await note.deleteOne();
+
+    res.status(200).json({
+      success: true,
+      message: "Note deleted successfully",
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
       message: error.message,
     });
   }
