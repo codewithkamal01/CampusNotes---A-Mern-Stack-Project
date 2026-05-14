@@ -8,6 +8,7 @@ import ProfileSidebar from "../components/profile/ProfileSidebar";
 import ProfileStats from "../components/profile/ProfileStats";
 import ProfileTabs from "../components/profile/ProfileTabs";
 import UploadedNotes from "../components/profile/UploadedNotes";
+import DeleteConfirmModal from "../components/DeleteConfirmModal";
 
 function Profile() {
   const [activeTab, setActiveTab] = useState("notes");
@@ -15,6 +16,8 @@ function Profile() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [deletingId, setDeletingId] = useState(null);
+  const [selectedNoteId, setSelectedNoteId] = useState(null);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   useEffect(() => {
     const fetchProfileData = async () => {
@@ -55,16 +58,25 @@ function Profile() {
     fetchProfileData();
   }, []);
 
-  const handleDelete = async (id) => {
-    const confirmDelete = window.confirm("Delete this note?");
+  // Open modal
+  const openDeleteModal = (id) => {
+    setSelectedNoteId(id);
+    setShowDeleteModal(true);
+  };
 
-    if (!confirmDelete) return;
-
+  // Delete note
+  const handleDelete = async () => {
     try {
-      setDeletingId(id);
-      await API.delete(`/notes/${id}`);
+      setDeletingId(selectedNoteId);
 
-      setNotes((prev) => prev.filter((note) => note._id !== id));
+      await API.delete(`/notes/${selectedNoteId}`);
+
+      setNotes((prev) => prev.filter((note) => note._id !== selectedNoteId));
+
+      toast.success("Note deleted successfully");
+
+      setShowDeleteModal(false);
+      setSelectedNoteId(null);
     } catch (error) {
       toast.error("Delete failed");
     } finally {
@@ -200,12 +212,18 @@ function Profile() {
             {activeTab === "notes" && (
               <UploadedNotes
                 notes={notes}
-                onDelete={handleDelete}
+                onDelete={openDeleteModal}
                 deletingId={deletingId}
               />
             )}
           </div>
         </div>
+        <DeleteConfirmModal
+          isOpen={showDeleteModal}
+          onClose={() => setShowDeleteModal(false)}
+          onConfirm={handleDelete}
+          loading={deletingId}
+        />
       </main>
     </div>
   );

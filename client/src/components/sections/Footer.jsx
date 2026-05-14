@@ -57,7 +57,7 @@ function Footer() {
             </a>
 
             <a
-              href="#"
+              href="https://kamalmanna.vercel.app"
               className="
                 flex
                 h-10
@@ -217,7 +217,10 @@ function Footer() {
           "
         >
           <p>© 2026 CampusNotes. All rights reserved.</p>
-
+          <div>
+            Made with ❤️ by <span className="text-blue-500">Kamal</span> -
+            Founder
+          </div>
           <div className="flex items-center gap-6">
             <Link to="/sitemap" className="transition hover:text-blue-600">
               Sitemap
