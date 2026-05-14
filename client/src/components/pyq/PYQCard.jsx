@@ -59,20 +59,19 @@ function PYQCard({ title, subject, fileUrl, year, semester, course }) {
             </p>
           </div>
         </div>
-
-        <span
-          className="
-            rounded-full border border-slate-200
-            bg-slate-50 px-3 py-1
-            text-[11px] font-medium
-            text-slate-600
-            dark:border-slate-700
-            dark:bg-slate-900
-            dark:text-slate-300
-          "
-        >
-          PDF
-        </span>
+        {year && (
+          <span
+            className="
+                rounded-full bg-emerald-100
+                px-3 py-1 text-xs font-medium
+                text-emerald-700
+                dark:bg-emerald-500/10
+                dark:text-emerald-400
+              "
+          >
+            {year}
+          </span>
+        )}
       </div>
 
       {/* Content */}
@@ -126,20 +125,6 @@ function PYQCard({ title, subject, fileUrl, year, semester, course }) {
               "
             >
               Semester {semester}
-            </span>
-          )}
-
-          {year && (
-            <span
-              className="
-                rounded-full bg-emerald-100
-                px-3 py-1 text-xs font-medium
-                text-emerald-700
-                dark:bg-emerald-500/10
-                dark:text-emerald-400
-              "
-            >
-              {year}
             </span>
           )}
         </div>

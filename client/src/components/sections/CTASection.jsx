@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function CTASection() {
   return (
-    <section className="px-6 py-16 md:px-8">
+    <section className="bg-white px-6 py-16 dark:bg-slate-950 md:px-8">
       <div
         className="
           relative
@@ -18,8 +18,10 @@ function CTASection() {
           py-16
           text-white
           shadow-2xl
+          shadow-blue-900/20
           md:px-12
           md:py-20
+          dark:shadow-black/40
         "
       >
         {/* Decorative Blur */}
@@ -50,10 +52,15 @@ function CTASection() {
                 text-lg
                 font-semibold
                 text-blue-700
+                shadow-lg
                 transition-all
                 duration-300
                 hover:-translate-y-1
+                hover:bg-slate-100
                 hover:shadow-2xl
+                dark:bg-slate-100
+                dark:text-blue-800
+                dark:hover:bg-white
               "
             >
               Create Free Account
@@ -75,6 +82,9 @@ function CTASection() {
                 transition-all
                 duration-300
                 hover:bg-white/20
+                dark:border-white/10
+                dark:bg-white/5
+                dark:hover:bg-white/15
               "
             >
               Browse Library

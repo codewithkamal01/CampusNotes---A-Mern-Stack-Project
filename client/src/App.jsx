@@ -25,12 +25,15 @@ import SystemStatus from "./pages/support/SystemStatus";
 
 import { Toaster } from "sonner";
 import ProtectedRoute from "./components/ProtectedRoute";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
     <>
       {/* Toast */}
       <Toaster position="top-right" richColors closeButton expand />
+
+      <ScrollToTop />
 
       <Routes>
         {/* Main Layout */}

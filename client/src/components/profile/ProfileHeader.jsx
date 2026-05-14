@@ -1,5 +1,5 @@
 import { Upload, LogOut, Sparkles } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import User from "../../assets/user.webp";
 
 function ProfileHeader({ user }) {
@@ -122,42 +122,42 @@ function ProfileHeader({ user }) {
 
           {/* Desktop Upload Button */}
           <div className="hidden sm:flex">
-            <a
-              href="/upload"
+            <Link
+              to="/upload"
               className="
-                inline-flex items-center gap-2
-                rounded-2xl
-                bg-blue-600 px-5 py-3
-                text-sm font-semibold text-white
-                shadow-lg shadow-blue-500/20
-                transition-all duration-200
-                hover:scale-[1.02]
-                hover:bg-blue-700
-                active:scale-[0.98]
-              "
+      inline-flex items-center gap-2
+      rounded-2xl
+      bg-blue-600 px-5 py-3
+      text-sm font-semibold text-white
+      shadow-lg shadow-blue-500/20
+      transition-all duration-200
+      hover:scale-[1.02]
+      hover:bg-blue-700
+      active:scale-[0.98]
+    "
             >
               <Upload size={18} />
               Upload Notes
-            </a>
+            </Link>
           </div>
         </div>
 
         {/* Mobile Actions */}
         <div className="mt-5 flex gap-3 sm:hidden">
-          <a
-            href="/upload"
+          <Link
+            to="/upload"
             className="
-              flex flex-1 items-center justify-center gap-2
-              rounded-2xl bg-blue-600
-              px-4 py-3
-              text-sm font-semibold text-white
-              shadow-md shadow-blue-500/20
-              transition hover:bg-blue-700
-            "
+    flex flex-1 items-center justify-center gap-2
+    rounded-2xl bg-blue-600
+    px-4 py-3
+    text-sm font-semibold text-white
+    shadow-md shadow-blue-500/20
+    transition hover:bg-blue-700
+  "
           >
             <Upload size={18} />
             Upload
-          </a>
+          </Link>
 
           <button
             onClick={handleLogout}
