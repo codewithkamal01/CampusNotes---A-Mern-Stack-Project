@@ -1,5 +1,3 @@
-// components/upload/UploadInfoCards.jsx
-
 import { BadgeCheck, Eye, Sparkles } from "lucide-react";
 
 function UploadInfoCards() {

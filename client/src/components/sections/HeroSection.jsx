@@ -1,11 +1,12 @@
 import React from "react";
 import { Search, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import HeroIn from "../../assets/Heroin.png";
 
 function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-white px-6 py-18 dark:bg-slate-950 md:px-8 lg:py-20">
-      <div className="relative z-10 mx-auto max-w-7xl">
+    <section className="relative overflow-hidden bg-white px-6 py-18 dark:bg-slate-950 md:px-8 lg:py-15">
+      <div className="relative z-10 mx-auto flex max-w-7xl items-end justify-between gap-10">
         <div className="max-w-3xl">
           {/* Heading */}
           <h1 className="mb-6 text-5xl font-extrabold leading-[1.05] tracking-tight text-slate-900 dark:text-white md:text-7xl">
@@ -66,6 +67,17 @@ function HeroSection() {
               Joined by 2,000+ students this week
             </span>
           </div>
+        </div>
+
+        <div className="relative hidden lg:flex w-[520px] shrink-0 items-end justify-center self-end">
+          <img
+            src={HeroIn}
+            alt="College Student"
+            className="max-h-[520px] w-full object-contain object-bottom select-none"
+          />
+
+          {/* Bottom Blend */}
+          <div className="absolute bottom-0 left-0 h-28 w-full bg-gradient-to-t from-white to-transparent dark:from-slate-950"></div>
         </div>
       </div>
 

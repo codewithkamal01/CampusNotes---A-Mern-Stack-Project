@@ -5,7 +5,7 @@ function FloatingUploadButton() {
   return (
     <div className="fixed bottom-5 right-5 z-50">
       {/* Pulse Ring */}
-      <div className="absolute inset-0 animate-ping rounded-full bg-blue-500/30" />
+      <div className="absolute inset-0" />
 
       {/* Button */}
       <Link

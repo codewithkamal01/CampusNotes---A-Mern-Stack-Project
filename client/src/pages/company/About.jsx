@@ -1,12 +1,12 @@
 export default function About() {
   return (
-    <div className="min-h-screen bg-white px-6 py-16 md:px-20">
+    <div className="min-h-screen bg-white dark:bg-slate-950 px-6 py-16 md:px-20">
       <div className="mx-auto max-w-6xl">
         {/* Heading */}
         <div className="mb-14 text-center">
-          <h1 className="mb-4 text-4xl font-bold text-gray-900">About Us</h1>
+          <h1 className="mb-4 text-4xl font-bold text-gray-900 dark:text-white">About Us</h1>
 
-          <p className="mx-auto max-w-3xl text-lg leading-8 text-gray-600">
+          <p className="mx-auto max-w-3xl text-lg leading-8 text-gray-600 dark:text-slate-400">
             Our platform helps college students easily access, upload, and share
             notes, PYQs, and study materials in one place. We aim to make
             learning simpler, faster, and more organized for students.
@@ -17,11 +17,11 @@ export default function About() {
         <div className="grid gap-8 md:grid-cols-3">
           {/* Mission */}
           <div className="rounded-3xl border border-gray-200 p-8 shadow-sm transition hover:shadow-md">
-            <h2 className="mb-4 text-2xl font-semibold text-gray-900">
+            <h2 className="mb-4 text-2xl font-semibold text-gray-900 dark:text-white">
               Our Mission
             </h2>
 
-            <p className="leading-7 text-gray-600">
+            <p className="leading-7 text-gray-600 dark:text-slate-400">
               We want to create a student-friendly platform where learners can
               easily find quality notes, previous year questions, and important
               resources for exam preparation.
@@ -30,11 +30,11 @@ export default function About() {
 
           {/* What We Provide */}
           <div className="rounded-3xl border border-gray-200 p-8 shadow-sm transition hover:shadow-md">
-            <h2 className="mb-4 text-2xl font-semibold text-gray-900">
+            <h2 className="mb-4 text-2xl font-semibold text-gray-900 dark:text-white">
               What We Provide
             </h2>
 
-            <p className="leading-7 text-gray-600">
+            <p className="leading-7 text-gray-600 dark:text-slate-400">
               Students can upload notes, browse study materials, access PYQs,
               and manage resources in a clean and easy-to-use platform.
             </p>
@@ -42,11 +42,11 @@ export default function About() {
 
           {/* Why Choose */}
           <div className="rounded-3xl border border-gray-200 p-8 shadow-sm transition hover:shadow-md">
-            <h2 className="mb-4 text-2xl font-semibold text-gray-900">
+            <h2 className="mb-4 text-2xl font-semibold text-gray-900 dark:text-white">
               Why Choose Us
             </h2>
 
-            <p className="leading-7 text-gray-600">
+            <p className="leading-7 text-gray-600 dark:text-slate-400">
               Our platform focuses on simplicity, fast access, organized
               content, and a modern user experience specially designed for
               college students.
@@ -55,12 +55,12 @@ export default function About() {
         </div>
 
         {/* Bottom Section */}
-        <div className="mt-16 rounded-3xl bg-gray-100 p-10 text-center">
-          <h2 className="mb-4 text-3xl font-bold text-gray-900">
+        <div className="mt-16 rounded-3xl bg-gray-100 dark:bg-slate-900 p-10 text-center">
+          <h2 className="mb-4 text-3xl font-bold text-gray-900 dark:text-white">
             Built for Students
           </h2>
 
-          <p className="mx-auto max-w-3xl leading-8 text-gray-600">
+          <p className="mx-auto max-w-3xl leading-8 text-gray-600 dark:text-slate-400 ">
             From class notes to exam preparation materials, our goal is to help
             students save time and learn more efficiently through a centralized
             study platform.

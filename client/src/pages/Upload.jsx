@@ -135,15 +135,6 @@ function Upload() {
           Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",
         },
-
-        // Upload progress
-        onUploadProgress: (progressEvent) => {
-          const percent = Math.round(
-            (progressEvent.loaded * 100) / progressEvent.total,
-          );
-
-          console.log(`Uploading: ${percent}%`);
-        },
       });
 
       toast.success(res.data.message || "Note uploaded successfully");
@@ -152,8 +143,6 @@ function Upload() {
       setFormData(initialFormState);
       setFile(null);
     } catch (error) {
-      console.log(error);
-
       toast.error(error.response?.data?.message || "Upload failed");
     } finally {
       setLoading(false);

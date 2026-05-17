@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
 function CTASection() {
+  const token = localStorage.getItem("token");
   return (
     <section className="bg-white px-6 py-16 dark:bg-slate-950 md:px-8">
       <div
@@ -41,10 +42,13 @@ function CTASection() {
           </p>
 
           {/* Buttons */}
+
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Link
-              to="/register"
-              className="
+            {!token ? (
+              <>
+                <Link
+                  to="/register"
+                  className="
                 rounded-2xl
                 bg-white
                 px-8
@@ -62,13 +66,13 @@ function CTASection() {
                 dark:text-blue-800
                 dark:hover:bg-white
               "
-            >
-              Create Free Account
-            </Link>
+                >
+                  Create Free Account
+                </Link>
 
-            <Link
-              to="/notes"
-              className="
+                <Link
+                  to="/notes"
+                  className="
                 rounded-2xl
                 border
                 border-white/20
@@ -86,9 +90,35 @@ function CTASection() {
                 dark:bg-white/5
                 dark:hover:bg-white/15
               "
-            >
-              Browse Library
-            </Link>
+                >
+                  Browse Library
+                </Link>
+              </>
+            ) : (
+              <Link
+                to="/notes"
+                className="
+                rounded-2xl
+                border
+                border-white/20
+                bg-white/10
+                px-8
+                py-4
+                text-lg
+                font-semibold
+                text-white
+                backdrop-blur-sm
+                transition-all
+                duration-300
+                hover:bg-white/20
+                dark:border-white/10
+                dark:bg-white/5
+                dark:hover:bg-white/15
+              "
+              >
+                Browse Library
+              </Link>
+            )}
           </div>
         </div>
       </div>

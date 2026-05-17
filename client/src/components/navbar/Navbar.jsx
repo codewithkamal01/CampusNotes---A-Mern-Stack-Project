@@ -4,7 +4,7 @@ import { Menu, X, User } from "lucide-react";
 import NavLinks from "./NavLinks";
 import DesktopAuth from "./DesktopAuth";
 import MobileMenu from "./MobileMenu";
-
+import ThemeToggle from "../ThemeToggle";
 
 function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -94,8 +94,8 @@ function NavBar() {
 
         {/* Right */}
         <div className="flex items-center gap-3">
+          <ThemeToggle />
           <DesktopAuth token={token} logout={logout} />
-
           {token && (
             <Link
               to="/profile"
@@ -134,7 +134,6 @@ function NavBar() {
           )}
         </div>
       </div>
-
       {/* Mobile */}
       <MobileMenu
         menuOpen={menuOpen}
