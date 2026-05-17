@@ -1,6 +1,6 @@
 export default function About() {
   return (
-    <div className="min-h-screen bg-white dark:bg-slate-950 px-6 py-16 md:px-20">
+    <div className="min-h-screen bg-white dark:bg-slate-900 px-6 py-16 md:px-20">
       <div className="mx-auto max-w-6xl">
         {/* Heading */}
         <div className="mb-14 text-center">
@@ -55,7 +55,7 @@ export default function About() {
         </div>
 
         {/* Bottom Section */}
-        <div className="mt-16 rounded-3xl bg-gray-100 dark:bg-slate-900 p-10 text-center">
+        <div className="mt-16 rounded-3xl bg-gray-100 dark:bg-slate-950 p-10 text-center">
           <h2 className="mb-4 text-3xl font-bold text-gray-900 dark:text-white">
             Built for Students
           </h2>
