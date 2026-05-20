@@ -1,15 +1,20 @@
+import dotenv from "dotenv";
+dotenv.config();
 import express from "express";
 import cors from "cors";
-import dotenv from "dotenv";
 import mongoose from "mongoose";
 import authRoutes from "./routes/authRoutes.js";
 import noteRoutes from "./routes/noteRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import errorMiddleware from "./middleware/errorMiddleare.js";
 
-dotenv.config();
+const requiredEnvs = [
+  "MONGO_URI",
+  "JWT_SECRET",
+  "SUPABASE_URL",
+  "SUPABASE_SERVICE_ROLE_KEY",
+];
 
-const requiredEnvs = ["MONGO_URI", "JWT_SECRET"];
 for (const envName of requiredEnvs) {
   if (!process.env[envName]) {
     console.error(`Missing required environment variable: ${envName}`);

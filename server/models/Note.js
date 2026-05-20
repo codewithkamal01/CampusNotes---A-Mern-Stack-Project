@@ -29,6 +29,11 @@ const noteSchema = new mongoose.Schema(
       required: true,
     },
 
+    filePath: {
+      type: String,
+      required: true,
+    },
+
     uploadedBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
@@ -38,10 +43,6 @@ const noteSchema = new mongoose.Schema(
       type: String,
       enum: ["Class Notes", "PYQ", "Others"],
       required: true,
-    },
-
-    public_id: {
-      type: String,
     },
   },
   {

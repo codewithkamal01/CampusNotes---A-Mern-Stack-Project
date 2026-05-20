@@ -8,12 +8,11 @@ import {
 } from "../controllers/noteController.js";
 
 import authMiddleware from "../middleware/authMiddleware.js";
-import upload from "../middleware/uploadMiddleware.js";
 
 const router = express.Router();
 
 //upload notes
-router.post("/upload", authMiddleware, upload.single("file"), uploadNote);
+router.post("/upload", authMiddleware, uploadNote);
 
 // Get User Notes
 router.get("/my-notes", authMiddleware, getMyNotes);

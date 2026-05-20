@@ -1,20 +1,21 @@
+import supabase from "../config/supabase.js";
 import Note from "../models/Note.js";
-
-//upload notes
+// Upload Note
 export const uploadNote = async (req, res) => {
   try {
-    const { title, course, year, uploadType, subject, semester } = req.body;
-
-    // File validation
-    if (!req.file) {
-      return res.status(400).json({
-        success: false,
-        message: "File not uploaded",
-      });
-    }
+    const {
+      title,
+      course,
+      year,
+      uploadType,
+      subject,
+      semester,
+      fileUrl,
+      filePath,
+    } = req.body;
 
     // Required fields validation
-    if (!title || !subject || !uploadType) {
+    if (!title || !subject || !uploadType || !fileUrl || !filePath) {
       return res.status(400).json({
         success: false,
         message: "Please fill all required fields",
@@ -31,22 +32,24 @@ export const uploadNote = async (req, res) => {
       }
     }
 
+    // Note Data
     const noteData = {
       title,
       subject,
       uploadType,
-      fileUrl: req.file.path,
-      public_id: req.file.filename,
+      fileUrl,
+      filePath,
       uploadedBy: req.user.id,
     };
 
-    // Add only for PYQ
+    // Add PYQ fields
     if (uploadType === "PYQ") {
       noteData.course = course;
       noteData.semester = semester;
       noteData.year = year;
     }
 
+    // Save to DB
     const note = await Note.create(noteData);
 
     res.status(201).json({
@@ -66,6 +69,7 @@ export const uploadNote = async (req, res) => {
 export const getAllNotes = async (req, res) => {
   try {
     const { type } = req.query;
+
     let filter = {};
 
     // Notes Page
@@ -102,7 +106,7 @@ export const getAllNotes = async (req, res) => {
   }
 };
 
-// latest notes
+// Latest Notes
 export const getLatestNotes = async (req, res) => {
   try {
     const notes = await Note.find({
@@ -149,13 +153,12 @@ export const getMyNotes = async (req, res) => {
   }
 };
 
-import cloudinary from "../config/cloudinary.js";
-
+// Delete Note
 export const deleteNote = async (req, res) => {
   try {
     const note = await Note.findById(req.params.id);
 
-    //check note exists
+    // Check note exists
     if (!note) {
       return res.status(404).json({
         success: false,
@@ -163,7 +166,7 @@ export const deleteNote = async (req, res) => {
       });
     }
 
-    //check ownership
+    // Check ownership
     if (note.uploadedBy.toString() !== req.user.id) {
       return res.status(403).json({
         success: false,
@@ -171,11 +174,19 @@ export const deleteNote = async (req, res) => {
       });
     }
 
-    //delete file from cloudinary
-    await cloudinary.uploader.destroy(note.public_id, {
-      resource_type: "raw",
-    });
-    //delete file from database
+    // Delete file from Supabase
+    const { error } = await supabase.storage
+      .from("notes")
+      .remove([note.filePath]);
+
+    if (error) {
+      return res.status(500).json({
+        success: false,
+        message: "Failed to delete file from storage",
+      });
+    }
+
+    // Delete DB record
     await note.deleteOne();
 
     res.status(200).json({
