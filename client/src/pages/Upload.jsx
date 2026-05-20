@@ -4,6 +4,7 @@ import UploadHeader from "../components/upload/UploadHeader";
 import UploadForm from "../components/upload/UploadForm";
 import UploadInfoCards from "../components/upload/UploadInfoCards";
 import { toast } from "sonner";
+import { uploadFile } from "../utils/uploadFile";
 
 const initialFormState = {
   uploadType: "",
@@ -108,42 +109,53 @@ function Upload() {
   // Submit
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Validate form
+
     if (!validateForm()) return;
 
     try {
       setLoading(true);
-      const uploadData = new FormData();
-      uploadData.append("title", formData.title);
-      uploadData.append("subject", formData.subject);
-      uploadData.append("uploadType", formData.uploadType);
 
-      // Add PYQ fields only for PYQ uploads
-      if (formData.uploadType === "PYQ") {
-        uploadData.append("course", formData.course);
-        uploadData.append("semester", formData.semester);
-        uploadData.append("year", formData.year);
-      }
-
-      // Append file
-      uploadData.append("file", file);
+      // Upload file to Supabase
+      const uploadedFile = await uploadFile(file);
 
       const token = localStorage.getItem("token");
-
-      const res = await API.post("/notes/upload", uploadData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "multipart/form-data",
-        },
+      console.log({
+        title: formData.title,
+        subject: formData.subject,
+        uploadType: formData.uploadType,
+        fileUrl: uploadedFile.fileUrl,
+        filePath: uploadedFile.filePath,
       });
+      // Send note data to backend
+      const res = await API.post(
+        "/notes/upload",
+        {
+          title: formData.title,
+          subject: formData.subject,
+          uploadType: formData.uploadType,
+          course: formData.uploadType === "PYQ" ? formData.course : undefined,
+          semester:
+            formData.uploadType === "PYQ" ? formData.semester : undefined,
+          year:
+            formData.uploadType === "PYQ" ? Number(formData.year) : undefined,
+          fileUrl: uploadedFile.fileUrl,
+          filePath: uploadedFile.filePath,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
 
       toast.success(res.data.message || "Note uploaded successfully");
 
-      // Reset Form
       setFormData(initialFormState);
       setFile(null);
     } catch (error) {
-      toast.error(error.response?.data?.message || "Upload failed");
+      toast.error(
+        error.response?.data?.message || error.message || "Upload failed",
+      );
     } finally {
       setLoading(false);
     }

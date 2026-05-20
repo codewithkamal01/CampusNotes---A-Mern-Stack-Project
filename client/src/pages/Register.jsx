@@ -27,6 +27,14 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Email Regex Validation
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[A-Za-z]{2,}$/;
+
+    if (!emailRegex.test(form.email)) {
+      return toast.error("Enter a valid email address");
+    }
+
+    // Password Match Validation
     if (form.password !== form.confirmPassword) {
       return toast.warning("Passwords do not match");
     }
@@ -36,7 +44,7 @@ export default function Register() {
 
       const res = await API.post("/auth/register", {
         name: form.name,
-        email: form.email,
+        email: form.email.toLowerCase().trim(),
         password: form.password,
       });
 
