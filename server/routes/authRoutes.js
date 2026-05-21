@@ -1,7 +1,7 @@
 import express from "express";
 import passport from "passport";
 import jwt from "jsonwebtoken";
-
+import authMiddleware from "../middleware/authMiddleware.js";
 import { registerUser, loginUser } from "../controllers/authController.js";
 
 const router = express.Router();
@@ -34,9 +34,7 @@ router.get(
       {
         id: req.user._id,
       },
-
       process.env.JWT_SECRET,
-
       {
         expiresIn: "7d",
       },
@@ -45,5 +43,15 @@ router.get(
     res.redirect(`${process.env.CLIENT_URL}/oauth-success?token=${token}`);
   },
 );
+
+router.get("/me", authMiddleware, async (req, res) => {
+  try {
+    res.status(200).json(req.user);
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+});
 
 export default router;
