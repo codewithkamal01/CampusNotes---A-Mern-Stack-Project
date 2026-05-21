@@ -227,9 +227,13 @@ export default function Register() {
               </button>
             </div>
             <button
-            className="bg-green-700 rounded-full text-white"
+              type="button"
+              className="flex w-full items-center justify-center gap-3 rounded-xl border border-gray-300 bg-white px-4 py-3 font-medium text-gray-700 transition hover:bg-gray-100"
               onClick={() => {
-                window.open("http://localhost:5000/api/auth/google", "_self");
+                window.open(
+                  `${import.meta.env.VITE_API_URL}/api/auth/google`,
+                  "_self",
+                );
               }}
             >
               Continue with Google
