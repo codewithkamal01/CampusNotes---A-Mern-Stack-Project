@@ -47,6 +47,14 @@ export const loginUser = async (req, res) => {
       });
     }
 
+    //if user sign up with google first
+    if (!user.password) {
+      return res.status(400).json({
+        success: false,
+        message: "Please login with Google",
+      });
+    }
+
     //compare pass
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {

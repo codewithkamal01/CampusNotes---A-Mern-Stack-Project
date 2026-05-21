@@ -1,13 +1,48 @@
-import dotenv from "dotenv";
-dotenv.config();
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
+import dotenv from "dotenv";
 import authRoutes from "./routes/authRoutes.js";
 import noteRoutes from "./routes/noteRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import errorMiddleware from "./middleware/errorMiddleare.js";
+import passport from "./config/passport.js";
 
+dotenv.config();
+
+const app = express();
+
+// CORS
+app.use(
+  cors({
+    origin: process.env.CLIENT_URL || "http://localhost:5173",
+    credentials: true,
+  }),
+);
+
+// Middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use(passport.initialize());
+
+// Static folder
+app.use("/uploads", express.static("uploads"));
+
+// Routes
+app.use("/api/auth", authRoutes);
+app.use("/api/notes", noteRoutes);
+app.use("/api/users", userRoutes);
+
+// Error middleware
+app.use(errorMiddleware);
+
+// Test route
+app.get("/", (req, res) => {
+  res.send("API RUNNING...");
+});
+
+// Required env check
 const requiredEnvs = [
   "MONGO_URI",
   "JWT_SECRET",
@@ -22,28 +57,15 @@ for (const envName of requiredEnvs) {
   }
 }
 
-const app = express();
-
-app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-app.use("/uploads", express.static("uploads"));
-app.use("/api/auth", authRoutes);
-app.use("/api/notes", noteRoutes);
-app.use("/api/users", userRoutes);
-app.use(errorMiddleware);
-
-app.get("/", (req, res) => {
-  res.send("API RUNNING...");
-});
-
-const PORT = process.env.PORT || 5000;
+// DB connect
 mongoose
   .connect(process.env.MONGO_URI)
-  .then(() => console.log("Mongodb connected"))
+  .then(() => console.log("MongoDB connected"))
   .catch((err) => console.log(err));
 
+// Server
+const PORT = process.env.PORT || 5000;
+
 app.listen(PORT, () => {
-  console.log(`server running on ${PORT}`);
+  console.log(`Server running on ${PORT}`);
 });

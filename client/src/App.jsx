@@ -26,6 +26,7 @@ import SystemStatus from "./pages/support/SystemStatus";
 import { Toaster } from "sonner";
 import ProtectedRoute from "./components/ProtectedRoute";
 import ScrollToTop from "./components/ScrollToTop";
+import OAuthSuccess from "./pages/OAuthSuccess";
 
 function App() {
   return (
@@ -73,6 +74,7 @@ function App() {
         {/* Auth Pages Without Navbar */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/oauth-success" element={<OAuthSuccess />} />
       </Routes>
     </>
   );

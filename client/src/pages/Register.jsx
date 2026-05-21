@@ -226,6 +226,14 @@ export default function Register() {
                 {loading ? "Creating Account..." : "Create Account"}
               </button>
             </div>
+            <button
+            className="bg-green-700 rounded-full text-white"
+              onClick={() => {
+                window.open("http://localhost:5000/api/auth/google", "_self");
+              }}
+            >
+              Continue with Google
+            </button>
           </form>
 
           {/* Footer */}
