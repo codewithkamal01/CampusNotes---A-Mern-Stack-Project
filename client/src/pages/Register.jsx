@@ -231,7 +231,7 @@ export default function Register() {
               className="flex w-full items-center justify-center gap-3 rounded-xl border border-gray-300 bg-white px-4 py-3 font-medium text-gray-700 transition hover:bg-gray-100"
               onClick={() => {
                 window.open(
-                  `${import.meta.env.VITE_API_URL}/api/auth/google/callback`,
+                  `${import.meta.env.VITE_API_URL}/auth/google`,
                   "_self",
                 );
               }}
