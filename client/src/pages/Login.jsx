@@ -210,9 +210,43 @@ export default function Login() {
               {loading ? "Logging in..." : "Login to Portal"}
             </button>
           </form>
+          
+          <div className="md:col-span-2">
+            {/* Divider */}
+            <div className="my-2 flex items-center gap-4">
+              <div className="h-px flex-1 bg-slate-200 dark:bg-slate-800"></div>
 
+              <span className="text-sm font-medium text-slate-500 dark:text-slate-400">
+                OR
+              </span>
+
+              <div className="h-px flex-1 bg-slate-200 dark:bg-slate-800"></div>
+            </div>
+            {/* Google Button */}
+            <button
+              type="button"
+              onClick={() => {
+                window.open(
+                  `${import.meta.env.VITE_API_URL}/auth/google`,
+                  "_self",
+                );
+              }}
+              className="group cursor-pointer flex w-full items-center justify-center gap-3 rounded-2xl border border-slate-300 bg-white px-4 py-3 font-semibold text-slate-700 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-slate-400 hover:bg-slate-50 hover:shadow-md active:scale-[0.98] dark:border-slate-700 dark:bg-slate-950 dark:text-white dark:hover:border-slate-600 dark:hover:bg-slate-900"
+            >
+              <div className="rounded-full bg-white p-1 shadow-sm">
+                <img
+                  src="https://www.svgrepo.com/show/475656/google-color.svg"
+                  alt="Google"
+                  className="h-5 w-5"
+                />
+              </div>
+
+              <span className="tracking-wide">Continue with Google</span>
+            </button>
+
+          </div>
           {/* Register */}
-          <div className="mt-10 border-t border-slate-200 pt-8 text-center dark:border-slate-800">
+          <div className="mt-4 text-center dark:border-slate-800">
             <p className="text-slate-600 dark:text-slate-400">
               New here?
               <Link

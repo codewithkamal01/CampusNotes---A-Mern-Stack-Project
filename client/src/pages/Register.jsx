@@ -65,8 +65,8 @@ export default function Register() {
 
   return (
     <>
-      <main className="h-screen overflow-hidden w-full bg-slate-100 dark:bg-slate-950 px-6 py-7 flex items-center justify-center">
-        <div className="relative w-full max-w-xl overflow-hidden rounded-4xl border border-slate-200 bg-white p-6 shadow-2xl dark:border-slate-800 dark:bg-slate-900 md:p-8">
+      <main className="min-h-screen w-full bg-slate-100 dark:bg-slate-950 px-4 py-6 sm:px-6 sm:py-8 flex items-center justify-center">
+        <div className="relative w-full max-w-xl rounded-4xl border border-slate-200 bg-white p-6 shadow-2xl dark:border-slate-800 dark:bg-slate-900 md:p-8">
           {/* Decorative Blur */}
           <div className="absolute -right-12 -top-12 h-48 w-48 rounded-full bg-blue-500/10 blur-3xl"></div>
 
@@ -74,12 +74,12 @@ export default function Register() {
           <header className="relative z-10 mb-4 text-center">
             <Link
               to="/"
-              className="mb-3 block text-2xl font-black tracking-tight text-blue-600"
+              className="mb-1 block text-2xl font-black tracking-tight text-blue-600"
             >
               CampusNotes
             </Link>
 
-            <h2 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
               Join the Community
             </h2>
 
@@ -91,7 +91,7 @@ export default function Register() {
           {/* Form */}
           <form
             onSubmit={handleSubmit}
-            className="relative z-10 grid grid-cols-1 gap-4 md:grid-cols-2"
+            className="relative z-10 grid grid-cols-1 gap-3 md:grid-cols-2"
           >
             {/* Full Name */}
             <div className="md:col-span-2">
@@ -226,20 +226,41 @@ export default function Register() {
                 {loading ? "Creating Account..." : "Create Account"}
               </button>
             </div>
+          </form>
+
+          <div className="md:col-span-2">
+            {/* Divider */}
+            <div className="my-2 flex items-center gap-4">
+              <div className="h-px flex-1 bg-slate-200 dark:bg-slate-800"></div>
+
+              <span className="text-sm font-medium text-slate-500 dark:text-slate-400">
+                OR
+              </span>
+
+              <div className="h-px flex-1 bg-slate-200 dark:bg-slate-800"></div>
+            </div>
+            {/* Google Button */}
             <button
               type="button"
-              className="flex w-full items-center justify-center gap-3 rounded-xl border border-gray-300 bg-white px-4 py-3 font-medium text-gray-700 transition hover:bg-gray-100"
               onClick={() => {
                 window.open(
                   `${import.meta.env.VITE_API_URL}/auth/google`,
                   "_self",
                 );
               }}
+              className="group cursor-pointer flex w-full items-center justify-center gap-3 rounded-2xl border border-slate-300 bg-white px-4 py-3 font-semibold text-slate-700 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-slate-400 hover:bg-slate-50 hover:shadow-md active:scale-[0.98] dark:border-slate-700 dark:bg-slate-950 dark:text-white dark:hover:border-slate-600 dark:hover:bg-slate-900"
             >
-              Continue with Google
-            </button>
-          </form>
+              <div className="rounded-full bg-white p-1 shadow-sm">
+                <img
+                  src="https://www.svgrepo.com/show/475656/google-color.svg"
+                  alt="Google"
+                  className="h-5 w-5"
+                />
+              </div>
 
+              <span className="tracking-wide">Continue with Google</span>
+            </button>
+          </div>
           {/* Footer */}
           <footer className="relative z-10 mt-4 text-center">
             <p className="text-sm text-slate-600 dark:text-slate-400">

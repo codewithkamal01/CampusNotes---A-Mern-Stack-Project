@@ -71,16 +71,21 @@ function ProfileHeader({ user }) {
             {/* Avatar */}
             <div className="relative">
               <img
-                src={User}
-                alt={user?.name}
+                src={user?.avatar || User}
+                alt={user?.name || "User"}
+                onError={(e) => {
+                  e.target.src = User;
+                }}
                 className="
-                  -mt-12 h-28 w-28
-                  rounded-3xl border-4 border-white
-                  object-cover shadow-xl
-                  ring-4 ring-blue-100
-                  dark:border-slate-950
-                  dark:ring-slate-800
-                "
+  -mt-12 h-28 w-28
+  rounded-3xl border-4 border-white
+  object-cover shadow-xl
+  ring-4 ring-blue-100
+  transition-all duration-300
+  hover:scale-105
+  dark:border-slate-950
+  dark:ring-slate-800
+"
               />
 
               {/* Online Dot */}
