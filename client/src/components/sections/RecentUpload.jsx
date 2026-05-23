@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import NoteCard from "../notes/NoteCard";
 import { useEffect, useState } from "react";
 import API from "../../services/api";
-import Logo from "../../assets/logo.jpg";
+import Logo from "../../assets/campus-notes-thumbnail.webp";
 
 function RecentUpload() {
   const [notes, setNotes] = useState([]);

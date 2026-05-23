@@ -1,7 +1,7 @@
 import React from "react";
 import { Search, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import HeroIn from "../../assets/Heroin.png";
+import HeroIn from "../../assets/campus-notes-hero-image.webp";
 
 function HeroSection() {
   return (

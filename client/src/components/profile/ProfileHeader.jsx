@@ -1,6 +1,6 @@
 import { Upload, LogOut, Sparkles } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-import User from "../../assets/user.webp";
+import User from "../../assets/user-profile-icon.webp";
 
 function ProfileHeader({ user }) {
   const navigate = useNavigate();

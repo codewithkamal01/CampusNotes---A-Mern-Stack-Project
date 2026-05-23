@@ -6,7 +6,7 @@ import NotesHeader from "../components/notes/NotesHeader";
 import NotesSearchBar from "../components/notes/NotesSearchBar";
 import NotesGrid from "../components/notes/NotesGrid";
 import Pagination from "../components/notes/Pagination";
-import Logo from "../assets/logo.jpg";
+import Logo from "../assets/campus-notes-thumbnail.webp";
 import FloatingUploadButton from "../components/notes/FloatingUploadButton";
 
 function Notes() {
