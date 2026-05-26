@@ -22,11 +22,11 @@ import Security from "./pages/legal/Security";
 import Support from "./pages/support/Support";
 import Sitemap from "./pages/support/Sitemap";
 import SystemStatus from "./pages/support/SystemStatus";
-
 import { Toaster } from "sonner";
 import ProtectedRoute from "./components/ProtectedRoute";
 import ScrollToTop from "./components/ScrollToTop";
 import OAuthSuccess from "./pages/OAuthSuccess";
+import Quiz from "./pages/Quiz";
 
 function App() {
   return (
@@ -44,7 +44,7 @@ function App() {
           <Route path="/notes" element={<Notes />} />
           <Route path="/pyq" element={<Pyq />} />
           <Route path="/profile" element={<Profile />} />
-
+          <Route path="/quiz" element={<Quiz/>} />
           {/* Protected Route */}
           <Route
             path="/upload"

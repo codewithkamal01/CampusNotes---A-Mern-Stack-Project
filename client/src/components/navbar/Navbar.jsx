@@ -33,7 +33,7 @@ function NavBar() {
         bg-white/80
         backdrop-blur-xl
         dark:border-slate-800/60
-        dark:bg-slate-950/80
+        dark:bg-slate-900/90
       "
     >
       <div

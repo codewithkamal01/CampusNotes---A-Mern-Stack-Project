@@ -162,7 +162,7 @@ function Upload() {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-50 px-4 py-3 dark:bg-black md:px-6">
+    <div className="min-h-screen bg-zinc-50 px-4 py-3 dark:bg-slate-900 md:px-6">
       <main className="px-4 py-8 sm:px-6 lg:px-10">
         <div className="mx-auto max-w-4xl">
           {/* Header */}

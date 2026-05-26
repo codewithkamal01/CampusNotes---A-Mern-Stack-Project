@@ -21,6 +21,10 @@ function NavLinks({ mobile = false, onClick }) {
       name: "Upload",
       path: "/upload",
     },
+    {
+      name: "Play Quiz",
+      path: "/quiz",
+    },
   ];
 
   return (

@@ -32,7 +32,7 @@ function Cards() {
       description: "Interactive flashcards and quizzes for lab exams.",
       icon: BookOpen,
       buttonText: "Start Quiz",
-      buttonLink: "/",
+      buttonLink: "/quiz",
       variant: "secondary",
       colSpan: "md:col-span-4",
     },
