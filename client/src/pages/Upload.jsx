@@ -163,7 +163,7 @@ function Upload() {
 
   return (
     <div className="min-h-screen bg-zinc-50 px-4 py-3 dark:bg-slate-900 md:px-6">
-      <main className="px-4 py-8 sm:px-6 lg:px-10">
+      <main className="px-1 py-4 sm:px-6 lg:px-10">
         <div className="mx-auto max-w-4xl">
           {/* Header */}
           <UploadHeader />
@@ -175,7 +175,7 @@ function Upload() {
               border
               border-slate-200
               bg-white
-              p-6
+              p-4
               shadow-sm
               transition-all
               duration-300

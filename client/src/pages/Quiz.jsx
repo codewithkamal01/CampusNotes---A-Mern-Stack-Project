@@ -209,7 +209,7 @@ function Quiz() {
   /* ---------------- QUIZ PAGE ---------------- */
 
   return (
-    <div className="h-screen overflow-hidden bg-gradient-to-br from-zinc-100 via-white to-zinc-200 dark:from-[#09090B] dark:via-[#111827] dark:to-[#0F172A] flex items-center justify-center p-4 transition-all duration-300">
+    <div className="min-h-screen overflow-hidden bg-gradient-to-br from-zinc-100 via-white to-zinc-200 dark:from-[#09090B] dark:via-[#111827] dark:to-[#0F172A] flex items-center justify-center p-4 transition-all duration-300">
       <div className="relative w-full max-w-xl rounded-3xl border border-white/10 dark:border-white/5 bg-white/70 dark:bg-white/[0.03] backdrop-blur-xl shadow-2xl p-6">
         {/* Glow */}
         <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 pointer-events-none" />
