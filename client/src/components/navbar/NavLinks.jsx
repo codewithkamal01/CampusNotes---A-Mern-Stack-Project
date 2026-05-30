@@ -25,6 +25,10 @@ function NavLinks({ mobile = false, onClick }) {
       name: "Play Quiz",
       path: "/quiz",
     },
+      {
+      name: "AI Study Buddy",
+      path: "/campus-ai",
+    },
   ];
 
   return (

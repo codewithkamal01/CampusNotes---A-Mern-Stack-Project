@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import authRoutes from "./routes/authRoutes.js";
 import noteRoutes from "./routes/noteRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
+import aiRoutes from "./routes/aiRoutes.js";
 import errorMiddleware from "./middleware/errorMiddleare.js";
 import passport from "./config/passport.js";
 
@@ -41,7 +42,8 @@ app.use("/uploads", express.static("uploads"));
 app.use("/api/auth", authRoutes);
 app.use("/api/notes", noteRoutes);
 app.use("/api/users", userRoutes);
-
+// ai route
+app.use("/api/ai", aiRoutes);
 // Error middleware
 app.use(errorMiddleware);
 

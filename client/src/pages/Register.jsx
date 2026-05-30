@@ -248,7 +248,7 @@ export default function Register() {
                   "_self",
                 );
               }}
-              className="group cursor-pointer flex w-full items-center justify-center gap-3 rounded-2xl border border-slate-300 bg-white px-4 py-3 font-semibold text-slate-700 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-slate-400 hover:bg-slate-50 hover:shadow-md active:scale-[0.98] dark:border-slate-700 dark:bg-slate-950 dark:text-white dark:hover:border-slate-600 dark:hover:bg-slate-900"
+              className="group cursor-pointer flex w-full items-center justify-center gap-3 rounded-full border border-slate-300 bg-white px-4 py-3 font-semibold text-slate-700 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-slate-400 hover:bg-slate-50 hover:shadow-md active:scale-[0.98] dark:border-slate-700 dark:bg-slate-950 dark:text-white dark:hover:border-slate-600 dark:hover:bg-slate-900"
             >
               <div className="rounded-full bg-white p-1 shadow-sm">
                 <img

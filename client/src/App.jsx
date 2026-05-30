@@ -27,6 +27,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import ScrollToTop from "./components/ScrollToTop";
 import OAuthSuccess from "./pages/OAuthSuccess";
 import Quiz from "./pages/Quiz";
+import AIStudyHub from "./pages/AIStudyHub";
 
 function App() {
   return (
@@ -44,7 +45,8 @@ function App() {
           <Route path="/notes" element={<Notes />} />
           <Route path="/pyq" element={<Pyq />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/quiz" element={<Quiz/>} />
+          <Route path="/quiz" element={<Quiz />} />
+          <Route path="/campus-ai" element={<AIStudyHub />} />
           {/* Protected Route */}
           <Route
             path="/upload"
