@@ -1,5 +1,3 @@
-# UNDER-CONSTRUCTION
-
 # 📚 College Notes Platform
 
 A modern full-stack notes sharing platform built for students to upload, manage, and access study materials easily.
@@ -13,6 +11,7 @@ The project uses a React + Vite frontend with an Express + MongoDB backend and f
 - 🔐 User Authentication with JWT
 - 📤 Upload and manage notes
 - 🔍 Search and browse notes
+- 🤖 AI StudyHub
 - 📚 Category / subject-based organization
 - 📱 Responsive modern UI
 - ⚡ Fast frontend powered by Vite
