@@ -59,6 +59,7 @@ function NavBar() {
               transition
               hover:bg-slate-100
               dark:hover:bg-slate-800
+              dark:text-white
               md:hidden
             "
           >

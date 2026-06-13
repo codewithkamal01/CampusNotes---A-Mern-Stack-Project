@@ -1,11 +1,29 @@
 import { useState, useRef, useEffect } from "react";
-import axios from "axios";
-import { Brain } from "lucide-react";
+import { Brain, Lightbulb, Sparkles } from "lucide-react";
 
 import Hero from "../components/ai-assistance/Hero";
 import Input from "../components/ai-assistance/Input";
 import Messages from "../components/ai-assistance/Messages";
 import API from "../services/api";
+
+const examplePrompts = [
+  {
+    title: "Explain a topic",
+    text: "Explain recursion with real-world examples.",
+  },
+  {
+    title: "Generate MCQs",
+    text: "Create 5 MCQs for Operating Systems.",
+  },
+  {
+    title: "Flashcards",
+    text: "Make flashcards for the Python list methods.",
+  },
+  {
+    title: "Study plan",
+    text: "Build a 7-day revision plan for discrete math.",
+  },
+];
 
 export default function AIStudyHub() {
   const [prompt, setPrompt] = useState("");
@@ -15,17 +33,25 @@ export default function AIStudyHub() {
     {
       role: "assistant",
       content:
-        "👋 Welcome to CampusNotes AI.\n\nAsk me to explain topics, generate MCQs, create flashcards, or build study plans.",
+        "👋 Welcome to CampusNotes AI!\n\nAsk for explanations, summaries, flashcards, MCQs, or study plans. Try a sample prompt below to get started.",
     },
   ]);
 
   const messagesEndRef = useRef(null);
 
+  const firstLoad = useRef(true);
+
   useEffect(() => {
+    if (firstLoad.current) {
+      firstLoad.current = false;
+      return;
+    }
+
     messagesEndRef.current?.scrollIntoView({
       behavior: "smooth",
+      block: "end",
     });
-  }, [messages, loading]);
+  }, [messages]);
 
   const sendMessage = async (customPrompt = null) => {
     const text = customPrompt || prompt;
@@ -38,7 +64,6 @@ export default function AIStudyHub() {
     };
 
     setMessages((prev) => [...prev, userMessage]);
-
     setPrompt("");
     setLoading(true);
 
@@ -61,7 +86,8 @@ export default function AIStudyHub() {
         ...prev,
         {
           role: "assistant",
-          content: "❌ Unable to connect to AI server.",
+          content:
+            "❌ Unable to connect to AI server. Please check your connection and try again.",
         },
       ]);
     } finally {
@@ -70,185 +96,96 @@ export default function AIStudyHub() {
   };
 
   return (
-    <div
-      className="
-      min-h-screen
-      bg-gradient-to-br
-      from-slate-50
-      via-white
-      to-blue-50
+    <div className="min-h-screen bg-linear-to-br from-slate-50 via-white to-blue-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 transition-colors duration-300">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10">
+        <div className="mb:5">
+          <Hero />
+        </div>
 
-      dark:from-slate-950
-      dark:via-slate-900
-      dark:to-slate-950
-
-      transition-colors
-      duration-300
-    "
-    >
-      <div className="max-w-5xl mx-auto px-4 py-10">
-        <Hero />
-
-        <div
-          className="
-          bg-white/70
-          dark:bg-slate-900/70
-
-          backdrop-blur-xl
-
-          border
-          border-slate-200
-          dark:border-slate-800
-
-          rounded-3xl
-
-          shadow-xl
-          shadow-black/5
-
-          overflow-hidden
-
-          flex
-          flex-col
-
-          h-[65vh]
-          md:h-[75vh]
-          lg:h-[750px]
-
-          min-h-0
-        "
-        >
-          {/* Header */}
-          <div
-            className="
-            border-b
-            border-slate-200
-            dark:border-slate-800
-
-            px-6
-            py-4
-
-            flex
-            items-center
-            gap-4
-
-            shrink-0
-          "
-          >
+        <div className="grid gap-8">
+          <div className="flex flex-col gap-6">
             <div
               className="
-              h-11
-              w-11
-
-              rounded-2xl
-
-              bg-gradient-to-br
-              from-blue-500
-              to-indigo-600
-
-              text-white
-
-              flex
-              items-center
-              justify-center
-            "
-            >
-              <Brain size={18} />
-            </div>
-
-            <div>
-              <h2 className="font-semibold text-slate-900 dark:text-white">
-                CampusNotes AI
-              </h2>
-
-              <p className="text-xs text-emerald-500">● Online</p>
-            </div>
-          </div>
-
-          {/* Quick Actions */}
-          <div
-            className="
-            px-6
-            py-4
-
-            border-b
-            border-slate-200
-            dark:border-slate-800
-
-            shrink-0
-          "
-          >
-            <div
-              className="
+  rounded-3xl
+  bg-white/80
+  dark:bg-slate-900/80
+  backdrop-blur-xl
+  border
+  border-slate-200/70
+  dark:border-slate-800
+  shadow-2xl
+  shadow-slate-900/5
+  overflow-hidden
+  h-[calc(100vh-5px)]
+  max-h-[900px]
   flex
-  gap-2
-
-  overflow-x-auto
-  scrollbar-none
-
-  pb-1
-
-  snap-x
-  snap-mandatory
+  flex-col
 "
             >
-              {[
-                "Explain React Hooks",
-                "Generate 10 MCQs on DBMS",
-                "Create Flashcards for Python",
-                "Make a Study Plan",
-              ].map((item) => (
-                <button
-                  key={item}
-                  onClick={() => sendMessage(item)}
-                  className="
-      shrink-0
-      snap-start
+              <div className="flex items-center gap-3 px-4 py-3 border-b border-slate-200 dark:border-slate-800">
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 text-white shrink-0">
+                  <Brain size={16} />
+                </div>
 
-      px-4
-      py-2.5
+                <div className="flex flex-col">
+                  <h2 className="text-sm font-semibold text-slate-900 dark:text-white">
+                    CampusNotes AI
+                  </h2>
 
-      text-sm
-      font-medium
-
-      rounded-full
-
-      bg-slate-100
-      dark:bg-slate-800
-
-      text-slate-700
-      dark:text-slate-300
-
-      border
-      border-slate-200
-      dark:border-slate-700
-
-      hover:bg-slate-200
-      dark:hover:bg-slate-700
-
-      transition-all
-      duration-200
-    "
-                >
-                  {item}
-                </button>
-              ))}
+                  <div className="flex items-center gap-1.5 text-xs text-emerald-600 dark:text-emerald-400">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    <span>Online</span>
+                  </div>
+                </div>
+              </div>
+              <Messages
+                messages={messages}
+                loading={loading}
+                messagesEndRef={messagesEndRef}
+              />
+              <Input
+                sendMessage={sendMessage}
+                loading={loading}
+                prompt={prompt}
+                setPrompt={setPrompt}
+              />
+            </div>
+            <div className="border-b border-slate-200 dark:border-slate-800 px-6 py-4 mx-auto">
+              <div className="flex flex-wrap gap-3">
+                {examplePrompts.map((item) => (
+                  <button
+                    key={item.text}
+                    type="button"
+                    onClick={() => sendMessage(item.text)}
+                    className="
+    group
+    rounded-2xl
+    border
+    border-slate-200
+    dark:border-slate-700
+    bg-white
+    dark:bg-slate-800
+    px-2
+    py-1
+    text-sm
+    font-medium
+    text-slate-700
+    dark:text-slate-200
+    shadow-sm
+    transition-all
+    duration-200
+    hover:shadow-lg
+    hover:-translate-y-1
+    hover:border-blue-500
+    dark:hover:border-blue-400
+  "
+                  >
+                    {item.title}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
-
-          {/* Messages */}
-          <Messages
-            messages={messages}
-            loading={loading}
-            messagesEndRef={messagesEndRef}
-          />
-
-          {/* Input */}
-          <Input
-            sendMessage={sendMessage}
-            loading={loading}
-            prompt={prompt}
-            setPrompt={setPrompt}
-          />
         </div>
       </div>
     </div>
